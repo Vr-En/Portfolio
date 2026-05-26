@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Vren Sante | Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #020617;
+      --nav: rgba(255, 255, 255, 0.88);
+      --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, 1180px);
+      margin: auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 45px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--dark);
+      border: 1px solid var(--line);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* NAVIGATION */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: var(--nav);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrapper {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: var(--dark);
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--dark), var(--primary));
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      font-weight: 700;
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--dark);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -9px;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 78px 0 45px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .hero-content {
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 48px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+      color: var(--dark);
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 62ch;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag-pill {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .hero-photo-card {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-photo-card::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      bottom: -70px;
+      width: 190px;
+      height: 190px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+    }
+
+    .photo-frame {
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #dbeafe;
+    }
+
+    .photo-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      color: white;
+    }
+
+    .photo-info strong {
+      font-size: 1.05rem;
+    }
+
+    .photo-info span {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .stats {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      text-align: center;
+      padding: 22px;
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+    }
+
+    .stat-card h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .stat-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .about-card {
+      padding: 30px;
+    }
+
+    .profile-row {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+
+    .profile-row img {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      object-fit: cover;
+      background: #dbeafe;
+    }
+
+    .profile-row h3 {
+      color: var(--dark);
+      font-size: 1.35rem;
+    }
+
+    .profile-row p,
+    .about-card p {
+      color: var(--muted);
+    }
+
+    .about-card p + p {
+      margin-top: 15px;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .highlight-card {
+      padding: 24px;
+    }
+
+    .highlight-card h4 {
+      color: var(--dark);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .highlight-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+    }
+
+    .skills-card {
+      padding: 30px;
+    }
+
+    .skill-group + .skill-group {
+      margin-top: 26px;
+    }
+
+    .skill-group h3 {
+      color: var(--dark);
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 0.92rem;
+    }
+
+    .progress-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .bar {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--dark), var(--primary));
+      border-radius: 999px;
+      transition: width 1.2s ease;
+    }
+
+    /* PROJECTS */
+    .project-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: 0.28s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-cover {
+      height: 185px;
+      padding: 22px;
+      display: flex;
+      align-items: end;
+      color: white;
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .cover-web {
+      background: linear-gradient(135deg, #2563eb, #0f172a);
+    }
+
+    .cover-pos {
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.20), rgba(15, 23, 42, 0.78)),
+        url("Image/NEXpos.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .cover-clasmeyt {
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.25), rgba(15, 23, 42, 0.78)),
+        url("Image/ClasMeyt.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .project-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .project-body h3 {
+      color: var(--dark);
+      font-size: 1.18rem;
+      line-height: 1.35;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stack span {
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      color: var(--dark);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .project-details {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .project-details.show {
+      display: block;
+    }
+
+    .details-btn {
+      margin-top: auto;
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--dark);
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .details-btn:hover {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+    }
+
+    .contact-card {
+      padding: 30px;
+    }
+
+    .contact-card h3 {
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .contact-card > p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: white;
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      font-weight: 900;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+    }
+
+    .contact-item h4 {
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: white;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.22);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-message {
+      display: none;
+      background: #dcfce7;
+      color: #166534;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 0 38px;
+      color: var(--muted);
+    }
+
+    .footer-content {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+      z-index: 998;
+    }
+
+    .back-to-top.show {
+      display: block;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .about-grid,
+      .skills-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-menu {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 78px;
+        background: rgba(255, 255, 255, 0.98);
+        border-bottom: 1px solid var(--line);
+        padding: 22px 4%;
+        flex-direction: column;
+        align-items: flex-start;
+        display: none;
+      }
+
+      .nav-menu.show {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .stats,
+      .highlights,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero-content,
+      .about-card,
+      .skills-card,
+      .contact-card {
+        padding: 24px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 2.45rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <a href="#home" class="brand">
+        <div class="brand-logo">VS</div>
+        <span>Vren Sante</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <a href="#contact" class="btn btn-outline nav-cta">Hire Me</a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <section class="hero-content reveal">
+          <div class="hero-badge">Aspiring Software Developer & Web Designer</div>
+
+          <h1 class="hero-title">
+            Creating clean, practical, and <span>user-focused</span> digital solutions.
+          </h1>
+
+          <p class="hero-description">
+            I’m <strong>Vren Sante</strong>, an aspiring software developer with skills in
+            C#, Java, JavaScript, HTML, and CSS. I enjoy building responsive websites,
+            desktop applications, and practical systems that solve real-world problems.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+          </div>
+
+          <div class="hero-tags">
+            <span class="tag-pill">C# Development</span>
+            <span class="tag-pill">POS System</span>
+            <span class="tag-pill">Front-End Design</span>
+            <span class="tag-pill">Web Systems</span>
+          </div>
+        </section>
+
+        <aside class="hero-photo-card reveal">
+          <div class="photo-frame">
+            <img src="Image/Vren.webp" alt="Vren Sante Profile Photo" class="hero-photo" />
+
+            <div class="photo-info">
+              <div>
+                <strong>Vren Sante</strong><br />
+                <span>Software Development</span>
+              </div>
+
+              <div>
+                <span>Philippines</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat-card">
+          <h3>5+</h3>
+          <p>Technical Skills</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>3</h3>
+          <p>Project Areas</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>2</h3>
+          <p>Major System Projects</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">About Me</span>
+        <h2 class="section-title">A motivated developer focused on clean design and useful applications.</h2>
+        <p class="section-text">
+          I am continuously developing my skills in programming, web design, and software development.
+          My goal is to create systems and websites that are simple, organized, and helpful to users.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card about-card reveal">
+          <div class="profile-row">
+            <img src="Image/Vren.webp" alt="Vren Sante Profile Photo" />
+
+            <div>
+              <h3>Vren Sante</h3>
+              <p>Aspiring Software Developer & Web Designer</p>
+            </div>
+          </div>
+
+          <p>
+            I have experience working with C#, Java, JavaScript, HTML, and CSS.
+            I am interested in building responsive websites, desktop applications, and
+            practical systems such as Point of Sale solutions and learning platforms.
+          </p>
+
+          <p>
+            I focus on improving my problem-solving skills, object-oriented programming knowledge,
+            debugging ability, and user interface design through hands-on projects.
+          </p>
+        </div>
+
+        <div class="highlights reveal">
+          <div class="card highlight-card">
+            <h4>Software Development</h4>
+            <p>
+              Knowledgeable in application logic, object-oriented programming, debugging,
+              and basic desktop application development.
+            </p>
+          </div>
+
+          <div class="card highlight-card">
+            <h4>Web Development</h4>
+            <p>
+              Skilled in creating responsive website layouts using HTML, CSS, and JavaScript.
+            </p>
+          </div>
+
+          <div class="card highlight-card">
+            <h4>Business System Project</h4>
+            <p>
+              Created NEXpos, a Point of Sale system designed for small business operations.
+            </p>
+          </div>
+
+          <div class="card highlight-card">
+            <h4>Education Platform Project</h4>
+            <p>
+              Worked on ClasMeyt, a web-based learning platform that supports organized digital learning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Technical Skills</span>
+        <h2 class="section-title">A practical skill set for software and web development.</h2>
+        <p class="section-text">
+          My skills combine programming fundamentals, front-end development, desktop application
+          development, and web design principles.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="card skills-card reveal">
+          <div class="skill-group">
+            <h3>Programming Languages</h3>
+            <div class="chips">
+              <span class="chip">C#</span>
+              <span class="chip">Java</span>
+              <span class="chip">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Web Development</h3>
+            <div class="chips">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">Responsive Web Design</span>
+              <span class="chip">Front-End Development</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>C# Development</h3>
+            <div class="chips">
+              <span class="chip">Windows Forms</span>
+              <span class="chip">Object-Oriented Programming</span>
+              <span class="chip">Application Logic</span>
+              <span class="chip">POS System Development</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Tools</h3>
+            <div class="chips">
+              <span class="chip">Visual Studio</span>
+              <span class="chip">Visual Studio Code</span>
+              <span class="chip">Git/GitHub</span>
+              <span class="chip">Browser Developer Tools</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card skills-card reveal">
+          <div class="progress-list">
+            <div>
+              <div class="progress-head">
+                <span>HTML & CSS</span>
+                <span>90%</span>
+              </div>
+              <div class="bar"><span data-width="90%"></span></div>
+            </div>
+
+            <div>
+              <div class="progress-head">
+                <span>JavaScript</span>
+                <span>75%</span>
+              </div>
+              <div class="bar"><span data-width="75%"></span></div>
+            </div>
+
+            <div>
+              <div class="progress-head">
+                <span>C#</span>
+                <span>85%</span>
+              </div>
+              <div class="bar"><span data-width="85%"></span></div>
+            </div>
+
+            <div>
+              <div class="progress-head">
+                <span>Java</span>
+                <span>78%</span>
+              </div>
+              <div class="bar"><span data-width="78%"></span></div>
+            </div>
+
+            <div>
+              <div class="progress-head">
+                <span>Web Design</span>
+                <span>85%</span>
+              </div>
+              <div class="bar"><span data-width="85%"></span></div>
+            </div>
+
+            <div>
+              <div class="progress-head">
+                <span>Problem Solving</span>
+                <span>82%</span>
+              </div>
+              <div class="bar"><span data-width="82%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Projects</span>
+        <h2 class="section-title">Selected projects that show my technical skills and practical experience.</h2>
+        <p class="section-text">
+          These projects demonstrate my ability to create responsive websites, desktop applications,
+          and useful web-based systems.
+        </p>
+      </div>
+
+      <div class="project-filters reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="csharp">C#</button>
+        <button class="filter-btn" data-filter="education">Education</button>
+      </div>
+
+      <div class="projects-grid">
+        <article class="card project-card reveal" data-category="web">
+          <div class="project-cover cover-web">
+            Portfolio Website
+          </div>
+
+          <div class="project-body">
+            <h3>Professional Online Portfolio</h3>
+
+            <p>
+              A responsive personal portfolio website designed to present my profile,
+              skills, projects, and contact information in a clean and professional way.
+            </p>
+
+            <div class="project-details">
+              This project uses HTML, CSS, and JavaScript with responsive layout,
+              smooth scrolling, project filtering, animated sections, and a polished user interface.
+            </div>
+
+            <div class="stack">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Responsive Design</span>
+            </div>
+
+            <button class="details-btn">Show Details</button>
+          </div>
+        </article>
+
+        <article class="card project-card reveal" data-category="csharp">
+          <div class="project-cover cover-pos">
+            NEXpos
+          </div>
+
+          <div class="project-body">
+            <h3>NEXpos: Point of Sale System for Small Businesses</h3>
+
+            <p>
+              NEXpos is a desktop-based POS system created for small businesses.
+              It helps manage sales transactions, product information, pricing,
+              and basic business operations through a user-friendly interface.
+            </p>
+
+            <div class="project-details">
+              This project was developed using C# and Windows Forms. It focuses on
+              processing customer purchases, calculating totals, organizing product details,
+              and supporting small business transaction management.
+            </div>
+
+            <div class="stack">
+              <span>C#</span>
+              <span>Windows Forms</span>
+              <span>POS System</span>
+              <span>Sales Management</span>
+              <span>Small Business</span>
+            </div>
+
+            <button class="details-btn">Show Details</button>
+          </div>
+        </article>
+
+        <article class="card project-card reveal" data-category="education">
+          <div class="project-cover cover-clasmeyt">
+            ClasMeyt
+          </div>
+
+          <div class="project-body">
+            <h3>ClasMeyt: Web-Based Learning Platform</h3>
+
+            <p>
+              ClasMeyt is a web-based learning platform designed to help senior high school
+              students access updated, organized, and reliable learning materials in one
+              centralized online space.
+            </p>
+
+            <div class="project-details">
+              This project supports SDG 4: Quality Education by providing students with
+              access to course materials, enrollment features, progress tracking, completed
+              lessons, achievement badges, teacher profiles, and communication tools.
+              Teachers can manage learning content while students can study at their own pace.
+            </div>
+
+            <div class="stack">
+              <span>Web System</span>
+              <span>Learning Platform</span>
+              <span>Progress Tracking</span>
+              <span>Course Enrollment</span>
+              <span>SDG 4</span>
+              <span>UI Design</span>
+            </div>
+
+            <button class="details-btn">Show Details</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Contact</span>
+        <h2 class="section-title">Let’s connect.</h2>
+        <p class="section-text">
+          Feel free to contact me for opportunities, collaboration, or project-related inquiries.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card contact-card reveal">
+          <h3>Contact Information</h3>
+          <p>
+            I am open to learning opportunities, internships, and software or web development projects.
+          </p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="contact-icon">✉</div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:santevren0129@gmail.com">santevren0129@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">☎</div>
+              <div>
+                <h4>Phone</h4>
+                <p>0991 693 7628</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">⌘</div>
+              <div>
+                <h4>GitHub</h4>
+                <a href="https://github.com/Vr-En" target="_blank">github.com/Vr-En</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">⌂</div>
+              <div>
+                <h4>Location</h4>
+                <p>Philippines</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card contact-card reveal">
+          <h3>Send a Message</h3>
+          <p>
+            This form is ready for your portfolio design. It can be connected later to a real email service.
+          </p>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <input type="text" placeholder="Your Name" required />
+              <input type="email" placeholder="Your Email" required />
+            </div>
+
+            <input type="text" placeholder="Subject" required />
+
+            <textarea placeholder="Write your message here..." required></textarea>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+
+            <p class="form-message" id="formMessage">
+              Message prepared successfully. Connect this form to EmailJS, Formspree, or a backend to send messages online.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <p>© <span id="year"></span> Vren Sante. All rights reserved.</p>
+      <p>Designed and developed by Vren Sante.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("main[id], section[id]");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+    const detailButtons = document.querySelectorAll(".details-btn");
+    const revealElements = document.querySelectorAll(".reveal");
+    const progressBars = document.querySelectorAll(".bar span");
+    const backToTop = document.getElementById("backToTop");
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    menuBtn.addEventListener("click", function () {
+      navMenu.classList.toggle("show");
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        navMenu.classList.remove("show");
+      });
+    });
+
+    function setActiveLink() {
+      let currentSection = "";
+
+      sections.forEach(function (section) {
+        const sectionTop = section.offsetTop - 130;
+        const sectionHeight = section.offsetHeight;
+
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(function (link) {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + currentSection) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    filterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        filterButtons.forEach(function (btn) {
+          btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const filter = button.getAttribute("data-filter");
+
+        projectCards.forEach(function (card) {
+          const category = card.getAttribute("data-category");
+
+          if (filter === "all" || filter === category) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+
+    detailButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const details = button.parentElement.querySelector(".project-details");
+
+        details.classList.toggle("show");
+
+        if (details.classList.contains("show")) {
+          button.textContent = "Hide Details";
+        } else {
+          button.textContent = "Show Details";
+        }
+      });
+    });
+
+    function revealOnScroll() {
+      revealElements.forEach(function (element) {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementTop < windowHeight - 90) {
+          element.classList.add("visible");
+        }
+      });
+
+      progressBars.forEach(function (bar) {
+        const barTop = bar.getBoundingClientRect().top;
+
+        if (barTop < window.innerHeight - 90) {
+          bar.style.width = bar.getAttribute("data-width");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", function () {
+      setActiveLink();
+      revealOnScroll();
+
+      if (window.scrollY > 400) {
+        backToTop.classList.add("show");
+      } else {
+        backToTop.classList.remove("show");
+      }
+    });
+
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      formMessage.style.display = "block";
+      contactForm.reset();
+
+      setTimeout(function () {
+        formMessage.style.display = "none";
+      }, 4500);
+    });
+
+    setActiveLink();
+    revealOnScroll();
+  </script>
+</body>
+</html>
